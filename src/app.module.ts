@@ -9,6 +9,10 @@ import { NotaModule } from './modules/admin/nota/nota.module';
 import { ClienteProveedorModule } from './modules/admin/cliente-proveedor/cliente-proveedor.module';
 import { UserModule } from './modules/admin/user/user.module';
 import { AdministracionModule } from './modules/admin/administracion/administracion.module';
+import { CatalogosModule } from './modules/admin/catalogos/catalogos.module';
+import { InventarioModule } from './modules/admin/inventario/inventario.module';
+import { VentasModule } from './modules/admin/ventas/ventas.module';
+import { ComprasModule } from './modules/admin/compras/compras.module';
 
 @Module({
   imports: [
@@ -22,6 +26,9 @@ import { AdministracionModule } from './modules/admin/administracion/administrac
     ClienteProveedorModule,
     UserModule,
     AdministracionModule,
+    CatalogosModule,
+    VentasModule,
+    ComprasModule,
   ],
   controllers: [AppController],
   providers: [AppService],
