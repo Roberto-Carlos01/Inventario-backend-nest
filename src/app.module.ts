@@ -12,12 +12,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: '127.0.0.1',
-      port: 3306,
-      username: 'root',
-      password: '123456',
-      database: 'inventario-technology-store',
+      type: (process.env.DATABASE_TYPE as 'mysql') || 'mysql',
+      host: process.env.DATABASE_HOST || '127.0.0.1',
+      port: +(process.env.DATABASE_HOST || 3306),
+      username: process.env.DATABASE_USER || 'root',
+      password: process.env.DATABASE_PASSWORD || '123456',
+      database: process.env.DATABASE_NAME || 'inventario-technology-store',
       entities: ['src/**/*.entity.ts'],
       synchronize: false,
     }),
