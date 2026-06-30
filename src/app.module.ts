@@ -18,7 +18,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: process.env.DATABASE_USER || 'root',
       password: process.env.DATABASE_PASSWORD || '123456',
       database: process.env.DATABASE_NAME || 'inventario-technology-store',
-      entities: ['src/**/*.entity.ts'],
+      entities: [__dirname + '/../**/*.entity{.ts, .js}'],
       synchronize: false,
     }),
     ConfigModule.forRoot({
