@@ -6,6 +6,12 @@ import { MovimientoModule } from './movimiento/movimiento.module';
 import { TrasladoModule } from './traslado/traslado.module';
 
 @Module({
-  imports: [AlmacenModule, ProductoModule, InventarioModule, MovimientoModule, TrasladoModule]
+  imports: [
+    AlmacenModule,
+    ProductoModule,
+    InventarioModule,
+    MovimientoModule,
+    TrasladoModule,
+  ],
 })
-export class InventarioModule {}
+export class InventarioModuleM {}
