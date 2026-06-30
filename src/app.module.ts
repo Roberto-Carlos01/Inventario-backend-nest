@@ -2,29 +2,29 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
-import { RolModule } from './modules/admin/rol/rol.module';
-import { PermissionsModule } from './modules/admin/permissions/permissions.module';
-import { InventarioModule } from './modules/admin/inventario/inventario.module';
-import { NotaModule } from './modules/admin/nota/nota.module';
-import { ClienteProveedorModule } from './modules/admin/cliente-proveedor/cliente-proveedor.module';
-import { UserModule } from './modules/admin/user/user.module';
 import { AdministracionModule } from './modules/admin/administracion/administracion.module';
 import { CatalogosModule } from './modules/admin/catalogos/catalogos.module';
-import { InventarioModule } from './modules/admin/inventario/inventario.module';
+import { InventarioModuleM } from './modules/admin/inventario/inventario.module';
 import { VentasModule } from './modules/admin/ventas/ventas.module';
 import { ComprasModule } from './modules/admin/compras/compras.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
+    TypeOrmModule.forRoot({
+      type: (process.env.DATABASE_TYPE as 'mysql') || 'mysql',
+      host: process.env.DATABASE_HOST || '127.0.0.1',
+      port: +(process.env.DATABASE_HOST || 3306),
+      username: process.env.DATABASE_USER || 'root',
+      password: process.env.DATABASE_PASSWORD || '123456',
+      database: process.env.DATABASE_NAME || 'inventario-technology-store',
+      entities: [__dirname + '/../**/*.entity{.ts, .js}'],
+      synchronize: false,
+    }),
     ConfigModule.forRoot({
       envFilePath: ['.development.env', '.production.env'],
     }),
-    RolModule,
-    PermissionsModule,
-    InventarioModule,
-    NotaModule,
-    ClienteProveedorModule,
-    UserModule,
+    InventarioModuleM,
     AdministracionModule,
     CatalogosModule,
     VentasModule,
