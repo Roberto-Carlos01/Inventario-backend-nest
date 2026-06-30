@@ -9,22 +9,22 @@ export class Empleado {
   nombreCompleto!: string;
 
   @Column({ type: 'varchar', length: 30, unique: true })
-  ci!: string;
+  ci?: string;
 
   @Column({ type: 'varchar', length: 30 })
-  telefono!: string;
+  telefono?: string;
 
   @Column({ type: 'varchar', length: 255 })
-  direccion!: string;
+  direccion?: string;
 
   @Column({ type: 'date' })
-  fecha_nac!: Date;
+  fecha_nac?: Date;
 
   @Column({ type: 'date' })
-  fechaIngreso!: Date;
+  fechaIngreso?: Date;
 
   @Column({ type: 'decimal', precision: 12, scale: 2 })
-  salarioBase!: number;
+  salarioBase?: number;
 
   @Column({ default: true })
   estado!: boolean;
