@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Usuario } from '../../usuario/entities/usuario.entity';
 
 @Entity({ name: 'empleado' })
 export class Empleado {
@@ -28,4 +35,9 @@ export class Empleado {
 
   @Column({ default: true })
   estado!: boolean;
+
+  //relacion 1:1 con usuario (un empleado tiene un usuario)
+  @OneToOne(() => Usuario)
+  @JoinColumn({ name: 'idusuario' })
+  usuario?: Usuario;
 }
