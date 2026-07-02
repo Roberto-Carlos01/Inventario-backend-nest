@@ -2,10 +2,12 @@ import {
   Column,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Usuario } from '../../usuario/entities/usuario.entity';
+import { TrabajaEn } from './trabaja_en.entity';
 
 @Entity({ name: 'empleado' })
 export class Empleado {
@@ -40,4 +42,8 @@ export class Empleado {
   @OneToOne(() => Usuario)
   @JoinColumn({ name: 'idusuario' })
   usuario?: Usuario;
+
+  // relacion , 1 empleado trabaja en muchas sucursales
+  @OneToMany(() => TrabajaEn, (trabajo) => trabajo.empleado)
+  asignaciones?: TrabajaEn[];
 }
