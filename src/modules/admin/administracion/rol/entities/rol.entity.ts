@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { RolTienePermiso } from './rol_tiene_permiso.entity';
+import { UsuarioAsignaRol } from '../../usuario/entities/usuario_asigna_rol.entity';
 
 @Entity({ name: 'rol' })
 export class Rol {
@@ -24,4 +25,7 @@ export class Rol {
 
   @OneToMany(() => RolTienePermiso, (rolTienePermiso) => rolTienePermiso.rol)
   permisos?: RolTienePermiso[];
+
+  @OneToMany(() => UsuarioAsignaRol, (usuarioAsignaRol) => usuarioAsignaRol.rol)
+  asignacionesUsuarios?: UsuarioAsignaRol[];
 }

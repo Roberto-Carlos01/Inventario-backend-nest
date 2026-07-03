@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { UsuarioAsignaRol } from './usuario_asigna_rol.entity';
 
 @Entity({ name: 'usuario' })
 export class Usuario {
@@ -19,4 +20,10 @@ export class Usuario {
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   foto_perfil?: string;
+
+  @OneToMany(
+    () => UsuarioAsignaRol,
+    (usuarioAsignaRol) => usuarioAsignaRol.usuario,
+  )
+  asignacionesRoles?: UsuarioAsignaRol[];
 }
