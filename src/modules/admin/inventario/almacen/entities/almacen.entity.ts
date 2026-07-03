@@ -4,8 +4,10 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Inventario } from '../../inventario/entities/inventario.entity';
 
 @Entity({ name: 'almacen' })
 export class Almacen {
@@ -24,4 +26,7 @@ export class Almacen {
   @ManyToOne(() => Sucursal, (sucursal) => sucursal.almacenes)
   @JoinColumn({ name: 'idsucursal' })
   sucursal!: Sucursal;
+
+  @OneToMany(() => Inventario, (inventario) => inventario.almacen)
+  inventarios?: Inventario[];
 }

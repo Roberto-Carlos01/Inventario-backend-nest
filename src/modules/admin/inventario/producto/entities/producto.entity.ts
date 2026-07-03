@@ -6,8 +6,10 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Inventario } from '../../inventario/entities/inventario.entity';
 
 @Entity({ name: 'producto' })
 export class Producto {
@@ -40,4 +42,7 @@ export class Producto {
   @ManyToOne(() => Categoria, (categoria) => categoria.productos)
   @JoinColumn({ name: 'idcategoria' })
   categoria?: Categoria;
+
+  @OneToMany(() => Inventario, (inventario) => inventario.producto)
+  inventarios?: Inventario[];
 }
