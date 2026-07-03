@@ -6,6 +6,12 @@ import { PermisoModule } from './permiso/permiso.module';
 import { SucursalModule } from './sucursal/sucursal.module';
 
 @Module({
-  imports: [EmpleadoModule, UsuarioModule, RolModule, PermisoModule, SucursalModule]
+  imports: [
+    EmpleadoModule,
+    UsuarioModule,
+    RolModule,
+    PermisoModule,
+    SucursalModule,
+  ],
 })
 export class AdministracionModule {}
