@@ -9,7 +9,7 @@ export class Impuesto {
   @Column({ type: 'varchar', length: 100 })
   nombre!: string;
 
-  @Column({ type: 'decimal', precision: 10, scale: 2, nullable: true })
+  @Column({ type: 'decimal', precision: 5, scale: 2, nullable: true })
   porcentaje!: number;
 
   @Column({ type: 'boolean', default: true, nullable: true })

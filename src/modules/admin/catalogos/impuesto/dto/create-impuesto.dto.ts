@@ -1,6 +1,7 @@
+import { Type } from 'class-transformer';
 import {
   IsBoolean,
-  IsDecimal,
+  IsNumber,
   IsOptional,
   IsString,
   Length,
@@ -11,7 +12,8 @@ export class CreateImpuestoDto {
   @Length(3, 100)
   nombre!: string;
 
-  @IsDecimal({ decimal_digits: '5,2' })
+  @Type(() => Number)
+  @IsNumber({ maxDecimalPlaces: 2 })
   porcentaje!: number;
 
   @IsOptional()
