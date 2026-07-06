@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { UsuarioAsignaRol } from './usuario_asigna_rol.entity';
+import { Movimiento } from 'src/modules/admin/inventario/movimiento/entities/movimiento.entity';
 
 @Entity({ name: 'usuario' })
 export class Usuario {
@@ -26,4 +27,7 @@ export class Usuario {
     (usuarioAsignaRol) => usuarioAsignaRol.usuario,
   )
   asignacionesRoles?: UsuarioAsignaRol[];
+
+  @OneToMany(() => Movimiento, (movimiento) => movimiento.usuario)
+  movimientos?: Movimiento[];
 }

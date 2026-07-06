@@ -3,10 +3,12 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Producto } from '../../producto/entities/producto.entity';
 import { Almacen } from '../../almacen/entities/almacen.entity';
+import { Movimiento } from '../../movimiento/entities/movimiento.entity';
 
 @Entity({ name: 'inventario' })
 export class Inventario {
@@ -26,4 +28,7 @@ export class Inventario {
   @ManyToOne(() => Almacen, (almacen) => almacen.inventarios)
   @JoinColumn({ name: 'idalmacen' })
   almacen!: Almacen;
+
+  @OneToMany(() => Movimiento, (movimiento) => movimiento.inventario)
+  movimientos?: Movimiento[];
 }
