@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { TrabajaEn } from '../../empleado/entities/trabaja_en.entity';
+import { Almacen } from 'src/modules/admin/inventario/almacen/entities/almacen.entity';
 
 @Entity({ name: 'sucursal' })
 export class Sucursal {
@@ -18,4 +19,7 @@ export class Sucursal {
 
   @OneToMany(() => TrabajaEn, (trabajaEn) => trabajaEn.sucursal)
   asignaciones?: TrabajaEn[];
+
+  @OneToMany(() => Almacen, (almacen) => almacen.sucursal)
+  almacenes?: Almacen[];
 }

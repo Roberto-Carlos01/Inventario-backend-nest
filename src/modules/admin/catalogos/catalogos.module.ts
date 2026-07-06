@@ -4,6 +4,6 @@ import { MarcaModule } from './marca/marca.module';
 import { ImpuestoModule } from './impuesto/impuesto.module';
 
 @Module({
-  imports: [CategoriaModule, MarcaModule, ImpuestoModule]
+  imports: [CategoriaModule, MarcaModule, ImpuestoModule],
 })
 export class CatalogosModule {}

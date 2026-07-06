@@ -1,4 +1,5 @@
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Producto } from 'src/modules/admin/inventario/producto/entities/producto.entity';
+import { Column, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Entity } from 'typeorm';
 
 @Entity({ name: 'impuesto' })
@@ -14,4 +15,7 @@ export class Impuesto {
 
   @Column({ type: 'boolean', default: true, nullable: true })
   activo?: boolean;
+
+  @OneToMany(() => Producto, (producto) => producto.impuesto)
+  productos?: Producto[];
 }
