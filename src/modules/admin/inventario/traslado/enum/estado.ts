@@ -1,0 +1,6 @@
+export enum EstadoTraslado {
+  PENDIENTE = 'PENDIENTE',
+  ENVIADO = 'ENVIADO',
+  RECIBIDO = 'RECIBIDO',
+  CANCELADO = 'CANCELADO',
+}

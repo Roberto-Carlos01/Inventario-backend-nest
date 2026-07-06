@@ -1,6 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { UsuarioAsignaRol } from './usuario_asigna_rol.entity';
 import { Movimiento } from 'src/modules/admin/inventario/movimiento/entities/movimiento.entity';
+import { Traslado } from 'src/modules/admin/inventario/traslado/entities/traslado.entity';
 
 @Entity({ name: 'usuario' })
 export class Usuario {
@@ -30,4 +31,7 @@ export class Usuario {
 
   @OneToMany(() => Movimiento, (movimiento) => movimiento.usuario)
   movimientos?: Movimiento[];
+
+  @OneToMany(() => Traslado, (traslado) => traslado.usuario)
+  traslados?: Traslado[];
 }
