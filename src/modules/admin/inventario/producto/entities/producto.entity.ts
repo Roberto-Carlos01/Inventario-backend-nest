@@ -11,6 +11,7 @@ import {
 } from 'typeorm';
 import { Inventario } from '../../inventario/entities/inventario.entity';
 import { DetalleCompra } from 'src/modules/admin/compras/detalle_compra/entities/detalle_compra.entity';
+import { DetalleVenta } from 'src/modules/admin/ventas/detalle_venta/entities/detalle_venta.entity';
 
 @Entity({ name: 'producto' })
 export class Producto {
@@ -49,4 +50,7 @@ export class Producto {
 
   @OneToMany(() => DetalleCompra, (detalleCompra) => detalleCompra.producto)
   detallesCompra?: DetalleCompra[];
+
+  @OneToMany(() => DetalleVenta, (detalleVenta) => detalleVenta.producto)
+  detallesVenta?: DetalleVenta[];
 }
