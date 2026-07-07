@@ -3,6 +3,7 @@ import { UsuarioAsignaRol } from './usuario_asigna_rol.entity';
 import { Movimiento } from 'src/modules/admin/inventario/movimiento/entities/movimiento.entity';
 import { Traslado } from 'src/modules/admin/inventario/traslado/entities/traslado.entity';
 import { Compra } from 'src/modules/admin/compras/compra/entities/compra.entity';
+import { Venta } from 'src/modules/admin/ventas/venta/entities/venta.entity';
 
 @Entity({ name: 'usuario' })
 export class Usuario {
@@ -38,4 +39,7 @@ export class Usuario {
 
   @OneToMany(() => Compra, (compra) => compra.usuario)
   compras?: Compra[];
+
+  @OneToMany(() => Venta, (venta) => venta.usuario)
+  ventas?: Venta[];
 }

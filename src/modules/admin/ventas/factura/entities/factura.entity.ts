@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { EstadoFactura } from '../enum/estadoFactura';
+import { Venta } from '../../venta/entities/venta.entity';
 
 @Entity({ name: 'factura' })
 export class Factura {
@@ -22,4 +23,7 @@ export class Factura {
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   cufd?: string;
+
+  @OneToOne(() => Venta, (venta) => venta.factura)
+  venta!: Venta;
 }
