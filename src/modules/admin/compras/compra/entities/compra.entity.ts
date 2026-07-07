@@ -14,7 +14,7 @@ export class Compra {
   @PrimaryGeneratedColumn()
   idcompra!: number;
 
-  @Column({ type: 'datetime', default: 'CURRENT_TIMESTAMP' })
+  @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   fecha!: Date;
 
   @Column({ type: 'decimal', precision: 12, scale: 2, nullable: true })
