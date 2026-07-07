@@ -26,4 +26,5 @@ export class DetalleCompra {
   @ManyToOne(() => Producto, (producto) => producto.detallesCompra)
   @JoinColumn({ name: 'idproducto' })
   producto!: Producto;
+  
 }
