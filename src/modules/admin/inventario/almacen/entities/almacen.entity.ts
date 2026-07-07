@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import { Inventario } from '../../inventario/entities/inventario.entity';
 import { Traslado } from '../../traslado/entities/traslado.entity';
+import { Compra } from 'src/modules/admin/compras/compra/entities/compra.entity';
 
 @Entity({ name: 'almacen' })
 export class Almacen {
@@ -36,4 +37,7 @@ export class Almacen {
 
   @OneToMany(() => Traslado, (traslado) => traslado.almacenRecibe)
   trasladosRecibidos?: Traslado[];
+
+  @OneToMany(() => Compra, (compra) => compra.almacen)
+  compras?: Compra[];
 }
