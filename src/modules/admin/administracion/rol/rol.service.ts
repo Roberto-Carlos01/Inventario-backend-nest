@@ -6,10 +6,17 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Rol } from './entities/rol.entity';
 import { Repository } from 'typeorm';
 import { AssignPermissionsDto } from './dto/assignPermissions.dto';
+import { Permiso } from '../permiso/entities/permiso.entity';
+import { RolTienePermiso } from './entities/rol_tiene_permiso.entity';
 
 @Injectable()
 export class RolService {
-  constructor(@InjectRepository(Rol) private rolRepository: Repository<Rol>) {}
+  constructor(
+    @InjectRepository(Rol) private rolRepository: Repository<Rol>,
+    @InjectRepository(Permiso) private permisoRepository: Repository<Permiso>,
+    @InjectRepository(RolTienePermiso)
+    private rolTienePermisoRepository: Repository<RolTienePermiso>,
+  ) {}
   async create(createRolDto: CreateRolDto): Promise<Rol> {
     const newRol = this.rolRepository.create(createRolDto);
     return await this.rolRepository.save(newRol);
@@ -39,5 +46,5 @@ export class RolService {
   }
   async addPermissionsRol(id: number, permissions: AssignPermissionsDto) {}
   async findPermissionsRol(id: number) {}
-  async removePermissionsRol(id: number) {}
+  async removePermissionsRol(id: number, permissions: AssignPermissionsDto) {}
 }

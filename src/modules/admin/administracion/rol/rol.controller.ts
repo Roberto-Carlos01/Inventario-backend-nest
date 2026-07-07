@@ -57,7 +57,10 @@ export class RolController {
     return this.rolService.findPermissionsRol(id);
   }
   @Delete(':id/permisos')
-  removePermissions(@Param('id', ParseIntPipe) id: number) {
-    return this.rolService.removePermissionsRol(id);
+  removePermissions(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() permissions: AssignPermissionsDto,
+  ) {
+    return this.rolService.removePermissionsRol(id, permissions);
   }
 }
