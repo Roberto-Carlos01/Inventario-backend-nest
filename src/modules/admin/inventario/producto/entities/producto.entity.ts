@@ -10,6 +10,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Inventario } from '../../inventario/entities/inventario.entity';
+import { DetalleCompra } from 'src/modules/admin/compras/detalle_compra/entities/detalle_compra.entity';
 
 @Entity({ name: 'producto' })
 export class Producto {
@@ -45,4 +46,7 @@ export class Producto {
 
   @OneToMany(() => Inventario, (inventario) => inventario.producto)
   inventarios?: Inventario[];
+
+  @OneToMany(() => DetalleCompra, (detalleCompra) => detalleCompra.producto)
+  detallesCompra?: DetalleCompra[];
 }

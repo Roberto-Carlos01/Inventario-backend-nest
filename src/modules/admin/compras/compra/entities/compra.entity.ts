@@ -3,11 +3,13 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Proveedor } from '../../proveedor/entities/proveedor.entity';
 import { Almacen } from 'src/modules/admin/inventario/almacen/entities/almacen.entity';
 import { Usuario } from 'src/modules/admin/administracion/usuario/entities/usuario.entity';
+import { DetalleCompra } from '../../detalle_compra/entities/detalle_compra.entity';
 
 @Entity({ name: 'compra' })
 export class Compra {
@@ -34,4 +36,7 @@ export class Compra {
   @ManyToOne(() => Usuario, (usuario) => usuario.compras)
   @JoinColumn({ name: 'idusuario' })
   usuario?: Usuario;
+
+  @OneToMany(() => DetalleCompra, (detalleCompra) => detalleCompra.compra)
+  detallesCompra!: DetalleCompra;
 }
