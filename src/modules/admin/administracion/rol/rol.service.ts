@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateRolDto } from './dto/create-rol.dto';
 import { UpdateRolDto } from './dto/update-rol.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Rol } from './entities/rol.entity';
 import { Repository } from 'typeorm';
+import { AssignPermissionsDto } from './dto/assignPermissions.dto';
 
 @Injectable()
 export class RolService {
@@ -35,4 +37,7 @@ export class RolService {
     const rol = await this.findOne(id);
     return this.rolRepository.remove(rol);
   }
+  async addPermissionsRol(id: number, permissions: AssignPermissionsDto) {}
+  async findPermissionsRol(id: number) {}
+  async removePermissionsRol(id: number) {}
 }

@@ -11,6 +11,7 @@ import {
 import { RolService } from './rol.service';
 import { CreateRolDto } from './dto/create-rol.dto';
 import { UpdateRolDto } from './dto/update-rol.dto';
+import { AssignPermissionsDto } from './dto/assignPermissions.dto';
 
 @Controller('roles')
 export class RolController {
@@ -42,5 +43,21 @@ export class RolController {
   @Delete(':id')
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.rolService.remove(id);
+  }
+
+  @Post(':id/permisos')
+  addPermissions(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() permissions: AssignPermissionsDto,
+  ) {
+    return this.rolService.addPermissionsRol(id, permissions);
+  }
+  @Get(':id/permisos')
+  findPermissions(@Param('id', ParseIntPipe) id: number) {
+    return this.rolService.findPermissionsRol(id);
+  }
+  @Delete(':id/permisos')
+  removePermissions(@Param('id', ParseIntPipe) id: number) {
+    return this.rolService.removePermissionsRol(id);
   }
 }
