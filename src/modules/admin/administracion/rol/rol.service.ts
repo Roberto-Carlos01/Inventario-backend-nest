@@ -28,8 +28,7 @@ export class RolService {
   async update(id: number, updateRolDto: UpdateRolDto): Promise<Rol> {
     const rol = await this.findOne(id);
     Object.assign(rol, updateRolDto);
-    await this.rolRepository.save(rol);
-    return this.findOne(id);
+    return await this.rolRepository.save(rol);
   }
 
   async remove(id: number) {
