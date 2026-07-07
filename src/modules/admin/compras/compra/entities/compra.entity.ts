@@ -1,4 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Proveedor } from '../../proveedor/entities/proveedor.entity';
+import { Almacen } from 'src/modules/admin/inventario/almacen/entities/almacen.entity';
+import { Usuario } from 'src/modules/admin/administracion/usuario/entities/usuario.entity';
 
 @Entity({ name: 'compra' })
 export class Compra {
@@ -13,4 +22,16 @@ export class Compra {
 
   @Column({ type: 'varchar', length: 100, nullable: true })
   numero_factura_recibido?: string;
+
+  @ManyToOne(() => Proveedor, (proveedor) => proveedor.compras)
+  @JoinColumn({ name: 'idproveedor' })
+  proveedor?: Proveedor;
+
+  @ManyToOne(() => Almacen, (almacen) => almacen.compras)
+  @JoinColumn({ name: 'idalmacen' })
+  almacen?: Almacen;
+
+  @ManyToOne(() => Usuario, (usuario) => usuario.compras)
+  @JoinColumn({ name: 'idusuario' })
+  usuario?: Usuario;
 }
