@@ -41,10 +41,30 @@ export class RolService {
   }
 
   async remove(id: number) {
+    //validar que el rol exista
     const rol = await this.findOne(id);
     return this.rolRepository.remove(rol);
   }
-  async addPermissionsRol(id: number, permissions: AssignPermissionsDto) {}
+  async addPermissionsRol(id: number, permissions: AssignPermissionsDto) {
+    //buscamos al rol , si no existe => error
+    const rol = await this.findOne(id);
+
+    //buscamos todos los permisos enviados , si no existe => error
+    for (const idPermiso of permissions.idsPermisos) {
+      const permiso = await this.permisoRepository.findOne({
+        where: { idpermiso: idPermiso },
+      });
+      if (!permiso) {
+        throw new NotFoundException(`No existe el permiso de id: ${id}`);
+      }
+    }
+    //busamos todos los permisos que ya tiene el rol
+    //evitamos agregar duplicados (CREAMOS UN SET)
+    // lista final que debemos de agregar
+    // crear objetos rol tiene permiso cada par rol y permiso
+    // guardarlos
+    //devolver el rol con sus permisos
+  }
   async findPermissionsRol(id: number) {}
   async removePermissionsRol(id: number, permissions: AssignPermissionsDto) {}
 }
